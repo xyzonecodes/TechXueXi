@@ -1,5 +1,7 @@
-from pdlearn.pluspush import PlusPushHandler
-from pdlearn.fangtang import FangtangHandler
+# from pdlearn.utils.pluspush import PlusPushHandler
+# from pdlearn.utils.fangtang import FangtangHandler
+# from pdlearn.utils.dingding import DingDingHandler
+from pdlearn.utils.sendNotify import sendNotify
 from typing import List, Any
 
 import selenium
@@ -11,7 +13,6 @@ from selenium.webdriver.chrome.options import Options
 from pdlearn import user_agent
 from pdlearn import user
 from pdlearn import auto
-from pdlearn.dingding import DingDingHandler
 from pdlearn.config import cfg
 from bs4 import BeautifulSoup
 import string
@@ -200,12 +201,13 @@ class Mydriver:
 
     def sendmsg(self):
         qcbase64=self.getQRcode()
-        if gl.pushmode=="3":
-            ft=FangtangHandler(gl.accesstoken)
-            ft.ftmsgsend(qcbase64)
-        elif gl.pushmode=="4":
-            push=PlusPushHandler(gl.accesstoken)
-            push.ftmsgsend(qcbase64)
+        # if gl.pushmode=="3":
+        #     ft=FangtangHandler(gl.accesstoken)
+        #     ft.ftmsgsend(qcbase64)
+        # elif gl.pushmode=="4":
+        #     push=PlusPushHandler(gl.accesstoken)
+        #     push.ftmsgsend(qcbase64)
+        
         gl.pushprint(decode_img(qcbase64))
 
 

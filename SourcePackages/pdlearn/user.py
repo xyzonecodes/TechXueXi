@@ -8,7 +8,7 @@ import requests
 from requests.cookies import RequestsCookieJar
 from sys import argv
 from pdlearn import score
-from pdlearn import file
+from pdlearn.utils import file
 from pdlearn import color
 from pdlearn.mydriver import Mydriver
 

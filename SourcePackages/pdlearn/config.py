@@ -1,6 +1,6 @@
 import os
 import sys
-from pdlearn import file
+from pdlearn.utils import file
 
 conf_template_text = '''include required(file("../config/default_template.conf"))\n\n\n\n'''
 

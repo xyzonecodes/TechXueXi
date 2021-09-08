@@ -7,7 +7,8 @@ from pdlearn import color
 from pdlearn.mydriver import Mydriver
 from pdlearn.score import show_score
 from pdlearn.const import const
-from pdlearn.log import *
+from pdlearn.utils.log import *
+from pdlearn.db import xuexiDB
 
 def generate_tiku_data(quiz_type=None, tip=None, option=None, answer=None, question=None):
     """
@@ -115,7 +116,8 @@ def answer_question(quiz_type, cookies, scores, score_all, quiz_xpath, category_
                     q_body = driver_ans.driver.find_element_by_css_selector(".q-body")
                     q_html = q_body.get_attribute('innerHTML')
                     q_text = q_body.text
-                    print(q_text)
+                    print(q_text)                    
+                    xuexiDB.selectQuestion(q_text)
                     log_daily(q_html)
                 tips, tip_full_text = driver_ans._view_tips()
                 if quiz_type == "daily":
@@ -377,7 +379,7 @@ def answer_question(quiz_type, cookies, scores, score_all, quiz_xpath, category_
                 print("检测到"+quiz_zh_CN[quiz_type]+"答题分数已满,退出学 xi ")
             else:
                 print("！！！！！没拿到满分，请收集日志反馈错误题目！！！！！")
-                auto.prompt("完成后（或懒得弄）请在此按回车...")
+                #auto.prompt("完成后（或懒得弄）请在此按回车...")
                 #log_daily("！！！！！没拿到满分！！！！！")
         if driver_default == None:
             try:

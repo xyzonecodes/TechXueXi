@@ -3,7 +3,7 @@ import random
 from pdlearn.mydriver import Mydriver
 from pdlearn.score import show_score
 from pdlearn.const import const
-from pdlearn.log import *
+from pdlearn.utils.log import *
 
 
 def check_delay():

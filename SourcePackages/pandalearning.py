@@ -66,10 +66,12 @@ def get_argv():
     else:
         gl.pushmode=os.getenv('Pushmode')
     gl.nohead=nohead
+    
     return nohead, lock, stime
 
 
 if __name__ == '__main__':
+   
     nohead, lock, stime = get_argv()
     print("是否无头模式：{0} {1}".format(nohead,os.getenv('Nohead')))
     #  0 读取版本信息
@@ -117,17 +119,17 @@ if __name__ == '__main__':
     # 增加多用户支持，已经有登录信息的重新扫码
     else:
         user_fullname = user.get_fullname(uid)
-        output = "\n用户" + user_fullname + "已登录,如要再次学习请重新扫码\n"
-        print(output)
-        gl.pushprint(output)
-        driver_login = Mydriver()
-        cookies = driver_login.login()
-        driver_login.quit()
-        user.save_cookies(cookies)
-        uid = user.get_userId(cookies)
-        user.update_last_user(uid)
+        user.refresh_all_cookies(4)
+        # output = "\n用户" + user_fullname + "已登录,如要再次学习请重新扫码\n"
+        # print(output)
+        # gl.pushprint(output)
+        # driver_login = Mydriver()
+        # cookies = driver_login.login()
+        # driver_login.quit()
+        # user.save_cookies(cookies)
+        # uid = user.get_userId(cookies)
+        # user.update_last_user(uid)
     output = "\n用户：" + user_fullname + "登录正常，开始学习...\n"
-
     article_index = user.get_article_index(uid)
     video_index = 1  # user.get_video_index(uid)
 
